@@ -3,8 +3,8 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-ID_CLIENT = "5288c8fb038d4f3496c2680ee1fbb8c2"
-SECRET = "e100cf50192642d089dd4899624702aa"
+ID_CLIENT = "CLIENT ID FROM SPOTIFY"
+SECRET = "SECRET FROM SPOTIFY"
 URI = "http://example.com"
 OAUTH_AUTHORIZE_URL = 'https://accounts.spotify.com/authorize'
 OAUTH_TOKEN_URL = 'https://accounts.spotify.com/api/token'
@@ -38,14 +38,12 @@ user_id = results["id"]
 
 # Searching musics
 songs_uri = []
-# songs_uri.append(sp.search(q=f"artist:{artist_list[9].split()[0]} track:{music_list[9]}")["tracks"]["items"][0]["uri"])
-# print(songs_uri)
-
 for n in range(0, 100):
     try:
         songs_uri.append(sp.search(q=f"artist:{artist_list[n].split()[0]} track:{music_list[n]}")["tracks"]
         ["items"][0]["uri"])
     except IndexError:
+      print(f"Couldn't find this music ({music_list[n]}) by this artist ({artist_list[n].split()[0]})")
         continue
 
 # Creating Playlist
